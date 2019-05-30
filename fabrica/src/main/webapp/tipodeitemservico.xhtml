@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="corpo">
+
+		<p:panel header="Cadastro de item de Serviço" id="panel">
+			<h:panelGrid columns="2">
+				<h:outputText value="Descricao"></h:outputText>
+				<p:inputText
+					value="#{TipoDeItemServicoControl.tipodeitemservico.descricao}"></p:inputText>
+
+				<h:outputText value="Desativado"></h:outputText>
+				<p:selectBooleanCheckbox
+					value="#{TipoDeItemServicoControl.tipodeitemservico.desativado}"></p:selectBooleanCheckbox>
+
+
+				<p:commandButton actionListener="#{TipoDeItemServicoControl.novo }"
+					value="Novo" update="tipoDeItemsServicos, panel"></p:commandButton>
+				<p:commandButton
+					actionListener="#{TipoDeItemServicoControl.confirmar }"
+					value="Confirmar" update="tipoDeItemsServicos, panel"></p:commandButton>
+			
+				<p:commandButton action="index.xhtml" value="Voltar"></p:commandButton>
+
+				</h:panelGrid>
+		</p:panel>
+
+		<p:dataTable id="tipoDeItemsServicos"
+			value="#{TipoDeItemServicoControl.tipoDeItensServicos}"
+			var="tpitemservico" width="100%" emptyMessage="Sem registros">
+			<f:facet name="header">
+				<h:outputText value="Lista de Tipo de Itens Servicos"></h:outputText>
+			</f:facet>
+			<p:column sortBy="#{tpitemservico.id }">
+				<f:facet name="header">
+					<h:outputText value="Codigo"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{tpitemservico.id }"></h:outputText>
+			</p:column>
+			<p:column sortBy="#{tpitemservico.descricao }">
+				<f:facet name="header">
+					<h:outputText value="Descricao"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{tpitemservico.descricao }"></h:outputText>
+			</p:column>
+			<p:column sortBy="#{tpitemservico.desativado }">
+				<f:facet name="header">
+					<h:outputText value="Desativado"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{tpitemservico.desativado }"></h:outputText>
+			</p:column>
+
+			<p:column headerText="" style="width:35px;">
+				<p:commandButton icon="ui-icon-pencil" title="Editar"
+					actionListener="#{TipoDeItemServicoControl.editar(tpitemservico)}"
+					update="formCorpo:panel">
+				</p:commandButton>
+			</p:column>
+
+			<p:column headerText="" style="width:35px;">
+				<p:commandButton icon="ui-icon-trash" title="Remover"
+					actionListener="#{TipoDeItemServicoControl.excluir(tpitemservico.id)}"
+					update="tipoDeItemsServicos" />
+			</p:column>
+
+
+		</p:dataTable>
+
+	</ui:define>
+</ui:composition>

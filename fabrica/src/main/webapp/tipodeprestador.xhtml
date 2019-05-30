@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="corpo">
+
+		<p:panel header="Cadastro de Tipo de prestadores" id="panel">
+			<h:panelGrid columns="2">
+				<h:outputText value="Descricao"></h:outputText>
+				<p:inputText value="#{TipoDePrestadorControl.tipoDePrestador.descricao}"></p:inputText>
+
+				<h:outputText value="Desativado"></h:outputText>
+				<p:selectBooleanCheckbox value="#{TipoDePrestadorControl.tipoDePrestador.desativado}"></p:selectBooleanCheckbox>
+				
+				
+				<p:commandButton actionListener="#{TipoDePrestadorControl.novo }" value="Novo" update="tipoDePrestadores, panel"></p:commandButton>
+				<p:commandButton actionListener="#{TipoDePrestadorControl.confirmar }" value="Confirmar" update="tipoDePrestadores, panel"></p:commandButton>
+				<p:commandButton action="index.xhtml" value="Voltar" ></p:commandButton>
+		
+			</h:panelGrid>
+		</p:panel>
+
+		<p:dataTable id="tipoDePrestadores" value="#{TipoDePrestadorControl.tipoDePrestadores}"
+			var="tpprestador" width="100%" emptyMessage="Sem registros">
+			<f:facet name="header">
+				<h:outputText value="Lista de TipoDePrestadores"></h:outputText>
+			</f:facet>
+			<p:column sortBy="#{tpprestador.id }">
+				<f:facet name="header">
+					<h:outputText value="Codigo"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{tpprestador.id }"></h:outputText>
+			</p:column>
+			<p:column sortBy="#{tpprestador.descricao }">
+				<f:facet name="header">
+					<h:outputText value="Descricao"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{tpprestador.descricao }"></h:outputText>
+			</p:column>
+			<p:column sortBy="#{tpprestador.desativado }">
+				<f:facet name="header">
+					<h:outputText value="Desativado"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{tpprestador.desativado }"></h:outputText>
+			</p:column>
+			
+			<p:column headerText=""  style="width:35px;" >
+				<p:commandButton icon="ui-icon-pencil" title="Editar"
+					actionListener="#{TipoDePrestadorControl.editar(tpprestador)}"
+					update="formCorpo:panel">  
+				</p:commandButton>
+			</p:column>
+
+			<p:column headerText="" style="width:35px;">
+				<p:commandButton icon="ui-icon-minusthick" title="Remover"
+					actionListener="#{TipoDePrestadorControl.excluir(tpprestador.id)}"
+					update="tipoDePrestadores"
+					/>
+			</p:column>
+		</p:dataTable>
+
+	</ui:define>
+</ui:composition>
