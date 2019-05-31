@@ -1,5 +1,6 @@
 package br.com.senai.fatesg.fabrica.entidade;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,18 +15,20 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import br.com.ambientinformatica.util.Entidade;
+
 //import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name = "TipoDePrestador", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "id"),
 		@UniqueConstraint(columnNames = "descricao") })
-public class TipoDePrestador implements java.io.Serializable {
+public class TipoDePrestador implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4756481156848694499L;
+	private static final long serialVersionUID = 1L;
 	private Integer id;	
 	private String descricao;	
 	private boolean desativado;		

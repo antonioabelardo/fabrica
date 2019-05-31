@@ -13,24 +13,90 @@ import org.springframework.context.annotation.Scope;
 import br.com.ambientinformatica.ambientjsf.util.UtilFaces;
 import br.com.senai.fatesg.fabrica.entidade.Cliente;
 import br.com.senai.fatesg.fabrica.entidade.Prestador;
+import br.com.senai.fatesg.fabrica.entidade.TipoDePrestador;
 import br.com.senai.fatesg.fabrica.persistencia.PrestadorDao;
+import br.com.senai.fatesg.fabrica.persistencia.TipoDePrestadorDao;
 
 @Named("PrestadorControl")
 @Scope("conversation")
 public class PrestadorControl {
 
 	private Prestador prestador = new Prestador();
+	
+	private TipoDePrestador tpprestador = new TipoDePrestador();
 
 	@Autowired
 	private PrestadorDao prestadorDao;
-
+	
 	private List<Prestador> prestadores = new ArrayList<Prestador>();
+	
+	@Autowired
+	private TipoDePrestadorDao tipoPrestadorDao;
+	
+	
+	private List<TipoDePrestador> tiposPrestadores = new ArrayList<TipoDePrestador>();
+	
+	public TipoDePrestador getTpprestador() {
+		return tpprestador;
+	}
+
+
+
+	public void setTpprestador(TipoDePrestador tpprestador) {
+		this.tpprestador = tpprestador;
+	}
+
+
+
+	public PrestadorDao getPrestadorDao() {
+		return prestadorDao;
+	}
+
+
+
+	public void setPrestadorDao(PrestadorDao prestadorDao) {
+		this.prestadorDao = prestadorDao;
+	}
+
+
+
+	public TipoDePrestadorDao getTipoPrestadorDao() {
+		return tipoPrestadorDao;
+	}
+
+
+
+	public void setTipoPrestadorDao(TipoDePrestadorDao tipoPrestadorDao) {
+		this.tipoPrestadorDao = tipoPrestadorDao;
+	}
+
+
+
+	public List<TipoDePrestador> getTiposPrestadores() {
+		return tiposPrestadores;
+	}
+
+
+
+	public void setTiposPrestadores(List<TipoDePrestador> tiposPrestadores) {
+		this.tiposPrestadores = tiposPrestadores;
+	}
+
+
+
+	public void setPrestadores(List<Prestador> prestadores) {
+		this.prestadores = prestadores;
+	}
+
+
 
 	@PostConstruct
 	public void init() {
 		listar(null);
-
+		listarTiposPrestadores();
 	}
+
+	
 
 	public void confirmar(ActionEvent evt) {
 		try {
@@ -82,6 +148,15 @@ public class PrestadorControl {
 		}
 	}
 
+	private void listarTiposPrestadores() {
+		try {
+			tiposPrestadores = tipoPrestadorDao.listar();
+		} catch (Exception e) {
+			UtilFaces.addMensagemFaces(e);
+		}
+		
+	}
+	
 	public Prestador getPrestador() {
 		return prestador;
 	}

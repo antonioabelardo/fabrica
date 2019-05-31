@@ -10,10 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Prestador implements java.io.Serializable {
+public class Prestador {
 
 	@Id
 	@GeneratedValue(generator = "prestador_seq", strategy = GenerationType.SEQUENCE)
@@ -32,9 +33,25 @@ public class Prestador implements java.io.Serializable {
 	private String conta;
 	
 	
-   @ManyToOne
+   @OneToOne
    private TipoDePrestador tipoDePrestador;
-   private String banco;
+   public String getCodigo_banco() {
+	return codigo_banco;
+}
+
+public void setCodigo_banco(String codigo_banco) {
+	this.codigo_banco = codigo_banco;
+}
+
+public TipoDePrestador getTipoDePrestador() {
+	return tipoDePrestador;
+}
+
+public void setTipoDePrestador(TipoDePrestador tipoDePrestador) {
+	this.tipoDePrestador = tipoDePrestador;
+}
+
+private String banco;
    private String senha;
 
    	public Date getDataDeNascimento() {
@@ -143,14 +160,5 @@ public class Prestador implements java.io.Serializable {
 		this.senha = senha;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name = "id", nullable = false)
-	public TipoDePrestador getTipoDePrestador() {
-		return tipoDePrestador;
-	}
-
-	public void setTipoDePrestador(TipoDePrestador tipoDePrestador) {
-		this.tipoDePrestador = tipoDePrestador;
-	}   
-
+	
 }

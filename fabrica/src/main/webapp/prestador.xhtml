@@ -27,13 +27,7 @@
 				
 				<h:outputText value="Telefone 1"></h:outputText>
 				<p:inputMask value="#{PrestadorControl.prestador.telefone }" mask="(99) 9999-9999"></p:inputMask>
-				
-				<p:outputLabel for="tipoPrestador" value="Tipo: " />
-	            <p:selectOneMenu id="tipoPrestador" value="#{TipoDePrestadorControl.tipoDePrestadores}" style="width:150px">
-	                <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
-	                <f:selectItems value="#{PrestadorControl.prestador.tipoDePrestador.descricao}" />
-	            </p:selectOneMenu>
-				
+ 				
 				<h:outputText value="Endereco"></h:outputText>
 				<p:inputText value="#{PrestadorControl.prestador.endereco }"></p:inputText>
 				
@@ -66,6 +60,15 @@
 				
 				<h:outputText value="Confirmar Senha"></h:outputText>
 				<p:password id="senha2" value="#{PrestadorControl.prestador.senha }"></p:password>
+				
+				<p:selectOneMenu id="listaTipos" autoUpdate="true"
+					value="#{PrestadorControl.prestador.tipoDePrestador}" converter="objectConverter"
+					ajax="false" required="false">
+					<f:selectItem itemLabel="Selecione" itemValue="" />
+					<f:selectItems value="#{PrestadorControl.tiposPrestadores}" var="tpprest"
+						itemLabel="#{tpprest.descricao}"  />
+				</p:selectOneMenu>				
+				
 				
 				<p:commandButton actionListener="#{PrestadorControl.novo }" 
 					value="Novo" 
