@@ -16,8 +16,19 @@
 				<h:outputText value="Login"></h:outputText>
 				<p:inputText value="#{UsuarioControl.usuario.login}"></p:inputText>
 
+
 				<h:outputText value="Senha"></h:outputText>
-				<p:password value="#{UsuarioControl.usuario.senha}" />
+				<p:password value="#{UsuarioControl.usuario.senha }" feedback="true"
+					inline="true" promptLabel="Digite a senha" weakLabel="Fraca"
+					goodLabel="Média" strongLabel="Forte" match="senha2"
+					validatorMessage="As duas senhas devem ser iguais">
+
+				</p:password>
+
+				<h:outputText value="Confirmar Senha"></h:outputText>
+				<p:password id="senha2" value="#{UsuarioControl.usuario.senha }"></p:password>
+
+
 
 				<h:outputText value="Ativo"></h:outputText>
 				<p:selectBooleanCheckbox value="#{UsuarioControl.usuario.ativo}"></p:selectBooleanCheckbox>

@@ -62,14 +62,7 @@
 				
 				<p:commandButton action="index.xhtml" value="Voltar"></p:commandButton>
 
-				<p:selectOneMenu id="listaTipos" autoUpdate="true"
-					value="#{ClienteControl.}" converter="objectConverter"
-					ajax="false" required="false">
-					<f:selectItem itemLabel="Selecione" itemValue="" />
-					<f:selectItems value="#{LigaControl.ligas}" var="liga"
-						itemLabel="#{liga.nomeLiga}" itemValue="#{liga}" />
-				</p:selectOneMenu>
-
+				
 			</h:panelGrid>
 		</p:panel>
 

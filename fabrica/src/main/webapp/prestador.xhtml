@@ -25,7 +25,7 @@
 				<h:outputText value="Cnpj"></h:outputText>
 				<p:inputMask value="#{PrestadorControl.prestador.cnpj }" mask="99.999.999/9999-99"></p:inputMask>
 				
-				<h:outputText value="Telefone 1"></h:outputText>
+				<h:outputText value="Telefone"></h:outputText>
 				<p:inputMask value="#{PrestadorControl.prestador.telefone }" mask="(99) 9999-9999"></p:inputMask>
  				
 				<h:outputText value="Endereco"></h:outputText>
@@ -44,23 +44,7 @@
 				<p:inputText value="#{PrestadorControl.prestador.email }"></p:inputText>
 				
 				
-				
-				<h:outputText value="Senha"></h:outputText>
-				<p:password value="#{PrestadorControl.prestador.senha }" 
-					feedback="true" 
-					inline="true" 
-					promptLabel="Digite a senha"
-					weakLabel="Fraca" 
-					goodLabel="Média" 
-					strongLabel="Forte" 
-					match="senha2" 
-					validatorMessage="As duas senhas devem ser iguais">
-					
-					</p:password>
-				
-				<h:outputText value="Confirmar Senha"></h:outputText>
-				<p:password id="senha2" value="#{PrestadorControl.prestador.senha }"></p:password>
-				
+				<p:outputLabel for="listaTipos" value="Tipo de Prestador" />
 				<p:selectOneMenu id="listaTipos" autoUpdate="true"
 					value="#{PrestadorControl.prestador.tipoDePrestador}" converter="objectConverter"
 					ajax="false" required="false">
